@@ -1,6 +1,6 @@
 # dnsdiff
 
-> [!NOTE] FYI
+> [!NOTE]
 > Forked from https://github.com/joshenders/dnsdiff to add some minor fixes and adjustments
 
 Use `example-diff.sh` and change:
