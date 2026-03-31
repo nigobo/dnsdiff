@@ -132,16 +132,22 @@ def main():
         term = Terminal()
 
     try:
-        zone = dns.zone.from_file(args.filename,
-                                  origin=args.origin,
-                                  allow_include=False,
-                                  relativize=False)
+         zone = dns.zone.from_file(args.filename,
+                                   origin=args.origin,
+                                   allow_include=False,
+                                   relativize=False)
     except dns.zone.UnknownOrigin:
         print("{}: Unable to find origin parameter."
               " Please use argument --origin.".format(progname))
         sys.exit(1)
-    except dns.exception.DNSException:
-        print("{}: Unable to import {}.".format(progname, args.filename))
+    except FileNotFoundError:
+        print("{}: File not found: {}".format(progname, args.filename))
+        sys.exit(1)
+    except dns.exception.DNSException as e:
+        print("{}: Unable to import {}: {}".format(progname, args.filename, str(e)))
+        sys.exit(1)
+    except Exception as e:
+        print("{}: Unexpected error reading {}: {}".format(progname, args.filename, str(e)))
         sys.exit(1)
 
     # Default port
