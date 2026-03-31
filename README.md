@@ -1,4 +1,8 @@
 # dnsdiff
+
+> [!NOTE] FYI
+> Forked from https://github.com/joshenders/dnsdiff to add some minor fixes and adjustments
+
 ## About
 `dnsdiff` compares the responses between two nameservers and provides output
 in unified diff format.
