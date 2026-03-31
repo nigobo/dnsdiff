@@ -3,6 +3,25 @@
 > [!NOTE] FYI
 > Forked from https://github.com/joshenders/dnsdiff to add some minor fixes and adjustments
 
+Use `example-diff.sh` and change:
+
+- `local-zone-file.zone` to the contents of the current zone
+- `--from-ns` change to the current DNS providers for the domain in question
+- `--to-ns` change to the new DNS providers
+- `--origin` the domain in question
+
+And then run `./example-diff.sh`
+
+```bash
+docker run --rm -v "$(pwd)/local-zone-file.zone:/zonefile.db" dnsdiff \
+    --ignore-ttl \
+    --from-ns ns1.example.se \
+    --to-ns ns2.domain.se \
+    --zonefile /zonefile.db \
+    --origin domain.com.
+
+```
+
 ## About
 `dnsdiff` compares the responses between two nameservers and provides output
 in unified diff format.
